@@ -9,11 +9,7 @@ let swiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("ExistentialAny"),
   .enableUpcomingFeature("ForwardTrailingClosures"),
   .enableUpcomingFeature("ImplicitOpenExistentials"),
-  .enableUpcomingFeature("StrictConcurrency"),
-  .unsafeFlags(
-    ["-warn-concurrency", "-enable-actor-data-race-checks"],
-    .when(configuration: .debug)
-  )
+  .enableUpcomingFeature("StrictConcurrency")
 ]
 
 let package = Package(
