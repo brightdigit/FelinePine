@@ -1,16 +1,7 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 5.7
 // swiftlint:disable explicit_acl explicit_top_level_acl
 
 import PackageDescription
-
-let swiftSettings: [SwiftSetting] = [
-  .enableUpcomingFeature("BareSlashRegexLiterals"),
-  .enableUpcomingFeature("ConciseMagicFile"),
-  .enableUpcomingFeature("ExistentialAny"),
-  .enableUpcomingFeature("ForwardTrailingClosures"),
-  .enableUpcomingFeature("ImplicitOpenExistentials"),
-  .enableUpcomingFeature("StrictConcurrency")
-]
 
 let package = Package(
   name: "FelinePine",
@@ -31,10 +22,9 @@ let package = Package(
         .product(
           name: "Logging",
           package: "swift-log",
-          condition: .when(platforms: [.linux, .android, .openbsd, .wasi, .windows])
+          condition: .when(platforms: [.linux, .android, .wasi, .windows])
         )
-      ],
-      swiftSettings: swiftSettings
+      ]
     ),
     .testTarget(
       name: "FelinePineTests",

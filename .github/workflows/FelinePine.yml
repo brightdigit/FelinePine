@@ -64,28 +64,34 @@ jobs:
     strategy:
       matrix:
         include:
-#           - runs-on: macos-12
-#             xcode: "/Applications/Xcode_14.0.1.app"
-#             iOSVersion: "16.0"
-#             watchOSVersion: "9.0"
-#             watchName: "Apple Watch Series 8 (41mm)"
-#             iPhoneName: "iPhone 12"
-#           - runs-on: macos-12
-#             xcode: "/Applications/Xcode_14.1.app"
-#             iOSVersion: "16.1"
-#             watchOSVersion: "9.1"
-#             watchName: "Apple Watch Ultra (49mm)"
-#             iPhoneName: "iPhone 13"
-#           - runs-on: macos-12
-#             xcode: "/Applications/Xcode_14.2.app"
-#             iOSVersion: "16.2"
-#             watchOSVersion: "9.1"
-#             watchName: "Apple Watch Ultra (49mm)"
-#             iPhoneName: "iPhone 14"
+          - runs-on: macos-12
+            xcode: "/Applications/Xcode_14.0.1.app"
+            iOSVersion: "16.0"
+            watchOSVersion: "9.0"
+            watchName: "Apple Watch Series 5 (40mm)"
+            iPhoneName: "iPhone 11"
+          - runs-on: macos-12
+            xcode: "/Applications/Xcode_14.1.app"
+            iOSVersion: "16.1"
+            watchOSVersion: "9.1"
+            watchName: "Apple Watch Series 6 (40mm)"
+            iPhoneName: "iPhone 12"
+          - runs-on: macos-12
+            xcode: "/Applications/Xcode_14.2.app"
+            iOSVersion: "16.2"
+            watchOSVersion: "9.1"
+            watchName: "Apple Watch Series 7 (41mm)"
+            iPhoneName: "iPhone 13 Pro"
           - runs-on: macos-13
             xcode: "/Applications/Xcode_14.3.1.app"
-            iOSVersion: "16.4"
-            watchOSVersion: "9.4"
+            iOSVersion: "16.2"
+            watchOSVersion: "9.1"
+            watchName: "Apple Watch Series 8 (45mm)"
+            iPhoneName: "iPhone 14"
+          - runs-on: macos-13
+            xcode: "/Applications/Xcode_15.0.app"
+            iOSVersion: "17.0"
+            watchOSVersion: "10.0"
             watchName: "Apple Watch Ultra (49mm)"
             iPhoneName: "iPhone 14 Pro Max"
     steps:
@@ -101,7 +107,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.xcode }}-
       - name: Cache mint
-        if: startsWith(matrix.xcode,'/Applications/Xcode_14.3')
+        if: startsWith(matrix.xcode,'/Applications/Xcode_14.3.1')
         id: cache-mint
         uses: actions/cache@v3
         env:
@@ -118,7 +124,7 @@ jobs:
       - name: Setup Xcode
         run: sudo xcode-select -s ${{ matrix.xcode }}/Contents/Developer
       - name: Install mint
-        if: startsWith(matrix.xcode,'/Applications/Xcode_14.3')
+        if: startsWith(matrix.xcode,'/Applications/Xcode_14.3.1')
         run: |
           brew update
           brew install mint
@@ -126,13 +132,15 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: swift
+        if: ${{ github.ref_name == 'main' && matrix.xcode == '/Applications/Xcode_14.3.1.app' }}
       - name: Build
         run: swift build
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
+        if: ${{ github.ref_name == 'main' && matrix.xcode == '/Applications/Xcode_14.3.1.app' }}
       - name: Lint
         run: ./scripts/lint.sh
-        if: ${{ github.ref_name == 'main' && matrix.xcode == '/Applications/Xcode_14.3.app' }}
+        if: ${{ github.ref_name == 'main' && matrix.xcode == '/Applications/Xcode_14.3.1.app' }}
       # - name: Dump PIF
       #   if: startsWith(matrix.xcode,'/Applications/Xcode_14')
       #   run: |
