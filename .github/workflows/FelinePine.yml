@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-20.04, ubuntu-22.04]
-        swift-version: [5.8]
+        swift-version: [5.7.3, 5.8]
     steps:
       - uses: actions/checkout@v3
       - name: Set Ubuntu Release DOT

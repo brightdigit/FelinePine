@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8
+// swift-tools-version: 5.7
 // swiftlint:disable explicit_acl explicit_top_level_acl
 
 import PackageDescription
@@ -22,7 +22,7 @@ let package = Package(
         .product(
           name: "Logging",
           package: "swift-log",
-          condition: .when(platforms: [.linux, .android, .openbsd, .wasi, .windows])
+          condition: .when(platforms: [.linux, .android, .wasi, .windows])
         )
       ]
     ),
