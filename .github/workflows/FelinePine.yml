@@ -64,30 +64,18 @@ jobs:
     strategy:
       matrix:
         include:
-#           - runs-on: macos-12
-#             xcode: "/Applications/Xcode_14.0.1.app"
-#             iOSVersion: "16.0"
-#             watchOSVersion: "9.0"
-#             watchName: "Apple Watch Series 8 (41mm)"
-#             iPhoneName: "iPhone 12"
-#           - runs-on: macos-12
-#             xcode: "/Applications/Xcode_14.1.app"
-#             iOSVersion: "16.1"
-#             watchOSVersion: "9.1"
-#             watchName: "Apple Watch Ultra (49mm)"
-#             iPhoneName: "iPhone 13"
-#           - runs-on: macos-12
-#             xcode: "/Applications/Xcode_14.2.app"
-#             iOSVersion: "16.2"
-#             watchOSVersion: "9.1"
-#             watchName: "Apple Watch Ultra (49mm)"
-#             iPhoneName: "iPhone 14"
           - runs-on: macos-13
-            xcode: "/Applications/Xcode_14.3.1.app"
-            iOSVersion: "16.4"
-            watchOSVersion: "9.4"
+            xcode: "/Applications/Xcode_15.app"
+            iOSVersion: "17.0"
+            watchOSVersion: "10.0"
             watchName: "Apple Watch Ultra (49mm)"
             iPhoneName: "iPhone 14 Pro Max"
+          - runs-on: macos-13
+            xcode: "/Applications/Xcode_14.3.1.app"
+            iOSVersion: "16.2"
+            watchOSVersion: "9.1"
+            watchName: "Apple Watch Series 8 (41mm)"
+            iPhoneName: "iPhone 14"
     steps:
       - uses: actions/checkout@v3
       - name: Cache swift package modules
@@ -132,7 +120,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
       - name: Lint
         run: ./scripts/lint.sh
-        if: ${{ github.ref_name == 'main' && matrix.xcode == '/Applications/Xcode_14.3.app' }}
+        if: ${{ github.ref_name == 'main' && matrix.xcode == '/Applications/Xcode_14.3.1.app' }}
       # - name: Dump PIF
       #   if: startsWith(matrix.xcode,'/Applications/Xcode_14')
       #   run: |

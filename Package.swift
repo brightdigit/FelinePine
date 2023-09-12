@@ -3,15 +3,6 @@
 
 import PackageDescription
 
-let swiftSettings: [SwiftSetting] = [
-  .enableUpcomingFeature("BareSlashRegexLiterals"),
-  .enableUpcomingFeature("ConciseMagicFile"),
-  .enableUpcomingFeature("ExistentialAny"),
-  .enableUpcomingFeature("ForwardTrailingClosures"),
-  .enableUpcomingFeature("ImplicitOpenExistentials"),
-  .enableUpcomingFeature("StrictConcurrency")
-]
-
 let package = Package(
   name: "FelinePine",
   platforms: [.iOS(.v14), .watchOS(.v7), .macOS(.v11)],
@@ -33,8 +24,7 @@ let package = Package(
           package: "swift-log",
           condition: .when(platforms: [.linux, .android, .openbsd, .wasi, .windows])
         )
-      ],
-      swiftSettings: swiftSettings
+      ]
     ),
     .testTarget(
       name: "FelinePineTests",
