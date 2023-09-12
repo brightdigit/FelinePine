@@ -65,7 +65,7 @@ jobs:
       matrix:
         include:
           - runs-on: macos-13
-            xcode: "/Applications/Xcode_15.app"
+            xcode: "/Applications/Xcode_15.0.app"
             iOSVersion: "17.0"
             watchOSVersion: "10.0"
             watchName: "Apple Watch Ultra (49mm)"
@@ -89,7 +89,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.xcode }}-
       - name: Cache mint
-        if: startsWith(matrix.xcode,'/Applications/Xcode_14.3')
+        if: startsWith(matrix.xcode,'/Applications/Xcode_14.3.1')
         id: cache-mint
         uses: actions/cache@v3
         env:
