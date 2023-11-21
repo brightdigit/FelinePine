@@ -6,7 +6,7 @@ import Foundation
 #endif
 
 @available(iOS 14.0, watchOS 7.0, macOS 11.0, *)
-public protocol Loggable {
+public protocol Pine {
   static var logger: Logger {
     get
   }
