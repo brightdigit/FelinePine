@@ -23,24 +23,49 @@ private enum LoggingSystemRepository {
   }
 }
 
-@available(iOS 14.0, watchOS 7.0, macOS 11.0, *)
+/// Defines the logging categories for your application.
 public protocol LoggingSystem {
-  associatedtype Category: CaseIterable & Hashable & RawRepresentable
+  /// Logging categories available to types in the application
+  associatedtype Category: Hashable & RawRepresentable
     where Category.RawValue == String
+
+  @_documentation(visibility: private)
+  // swiftlint:disable:next missing_docs
   static var identifier: String { get }
+
+  /// Subsystem to use for each ``Logger``.
+  /// By default, this is `Bundle.main.bundleIdentifier`.
   static var subsystem: String { get }
-  static var loggers: [Category: Logger] { get }
+
+  /// Fetches the correct logger based on the category.
+  static func logger(forCategory category: Category) -> Logger
 }
 
-@available(iOS 14.0, watchOS 7.0, macOS 11.0, *)
 extension LoggingSystem {
+  // swiftlint:disable:next missing_docs
   public static var identifier: String {
     String(reflecting: Self.self)
   }
 
+  /// By default, this is `Bundle.main.bundleIdentifier`.
   public static var subsystem: String {
     // swiftlint:disable:next force_unwrapping
     Bundle.main.bundleIdentifier!
+  }
+}
+
+extension LoggingSystem where Category: CaseIterable {
+  private static var loggers: [Category: Logger] {
+    LoggingSystemRepository.loggingSystem(for: Self.self, using: defaultLoggers())
+  }
+
+  /// If ``Category`` implements `CaseIterable`, ``LoggingSystem`` can automatically
+  /// iterate over the cases and automatically create the ``Logger`` objects needed.
+  public static func logger(forCategory category: Category) -> Logger {
+    guard let logger = Self.loggers[category] else {
+      preconditionFailure("missing logger")
+    }
+    return logger
   }
 
   private static func defaultLoggers() -> [Category: Logger] {
@@ -49,16 +74,5 @@ extension LoggingSystem {
         ($0, Logger(subsystem: Self.subsystem, category: $0))
       }
     )
-  }
-
-  public static func logger(forCategory category: Category) -> Logger {
-    guard let logger = Self.loggers[category] else {
-      preconditionFailure("missing logger")
-    }
-    return logger
-  }
-
-  public static var loggers: [Category: Logger] {
-    LoggingSystemRepository.loggingSystem(for: Self.self, using: defaultLoggers())
   }
 }

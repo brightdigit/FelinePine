@@ -5,8 +5,11 @@ import Foundation
   import Logging
 #endif
 
-@available(iOS 14.0, watchOS 7.0, macOS 11.0, *)
+/// Defines a shared logger for the type.
+///
+/// Provides a shared ``Logger`` to use in this type.
 public protocol Pine {
+  /// Shared logger for Type.
   static var logger: Logger {
     get
   }
