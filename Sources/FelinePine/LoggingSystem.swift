@@ -34,7 +34,7 @@ public protocol LoggingSystem {
 
 @available(iOS 14.0, watchOS 7.0, macOS 11.0, *)
 extension LoggingSystem {
-  public var identifier: String {
+  public static var identifier: String {
     String(reflecting: Self.self)
   }
 
