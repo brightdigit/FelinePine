@@ -4,9 +4,6 @@ on:
     branches-ignore:
       - '*WIP'
 
-env:
-  CODEQL_ENABLE_EXPERIMENTAL_FEATURES_SWIFT: true
-
 jobs:
   build-ubuntu:
     name: Build on Ubuntu
@@ -120,16 +117,8 @@ jobs:
         run: |
           brew update
           brew install mint
-      - name: Initialize CodeQL
-        if: startsWith(matrix.xcode,'/Applications/Xcode_15.0.1')
-        uses: github/codeql-action/init@v2
-        with:
-          languages: ${{ matrix.language }}
       - name: Build
         run: swift build
-      - name: Perform CodeQL Analysis
-        if: startsWith(matrix.xcode,'/Applications/Xcode_15.0.1')
-        uses: github/codeql-action/analyze@v2
       - name: Run Swift Package tests
         run: swift test -v --enable-code-coverage
       - uses: sersoft-gmbh/swift-coverage-action@v4
