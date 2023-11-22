@@ -48,8 +48,12 @@ extension LoggingSystem {
 
   /// By default, this is `Bundle.main.bundleIdentifier`.
   public static var subsystem: String {
-    // swiftlint:disable:next force_unwrapping
-    Bundle.main.bundleIdentifier!
+    #if canImport(os)
+      // swiftlint:disable:next force_unwrapping
+      Bundle.main.bundleIdentifier!
+    #else
+      identifier
+    #endif
   }
 }
 
