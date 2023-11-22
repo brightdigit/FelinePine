@@ -29,7 +29,6 @@ public protocol LoggingSystem {
   associatedtype Category: Hashable & RawRepresentable
     where Category.RawValue == String
 
-  @_documentation(visibility: private)
   // swiftlint:disable:next missing_docs
   static var identifier: String { get }
 
