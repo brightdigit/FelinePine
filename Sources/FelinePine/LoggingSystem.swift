@@ -29,7 +29,6 @@ public protocol LoggingSystem {
   associatedtype Category: Hashable & RawRepresentable
     where Category.RawValue == String
 
-  @_documentation(visibility: private)
   // swiftlint:disable:next missing_docs
   static var identifier: String { get }
 
@@ -49,8 +48,12 @@ extension LoggingSystem {
 
   /// By default, this is `Bundle.main.bundleIdentifier`.
   public static var subsystem: String {
-    // swiftlint:disable:next force_unwrapping
-    Bundle.main.bundleIdentifier!
+    #if canImport(os)
+      // swiftlint:disable:next force_unwrapping
+      Bundle.main.bundleIdentifier!
+    #else
+      identifier
+    #endif
   }
 }
 
