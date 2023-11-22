@@ -7,7 +7,12 @@ internal final class LoggingSystemTests: XCTestCase {
   }
 
   internal func testSubsystem() {
-    XCTAssertEqual(MockSystem.subsystem, Bundle.main.bundleIdentifier)
+    let subsystem = MockSystem.subsystem
+    if let bundleIdentifier = Bundle.main.bundleIdentifier {
+      XCTAssertEqual(subsystem, bundleIdentifier)
+    } else {
+      XCTAssertEqual(subsystem, MockSystem.identifier)
+    }
   }
 
   internal func testLogger() {
