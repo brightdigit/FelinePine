@@ -115,9 +115,7 @@ identifier_name:
   excluded:
     - id
 excluded:
-  - Tests
   - DerivedData
   - .build
-  - Sample
 indentation_width:
   indentation_width: 2
