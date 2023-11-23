@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8.1 
+// swift-tools-version: 5.8.1
 // swiftlint:disable explicit_acl explicit_top_level_acl
 
 import PackageDescription
