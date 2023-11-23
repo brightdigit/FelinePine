@@ -29,8 +29,9 @@ Type-wide **cat**egorized **log**ging.
    * [Requirements](#requirements)
    * [Installation](#installation)
 * [Usage](#usage)
-   * [Setup](#further-documentation)
-   * [Customising](#further-documentation)
+   * [Getting Started](#getting-started)
+   * [Using the Loggable type](#using-the-loggable-type)
+   * [Further Documentation](#further-documentation)
 * [License](#license)
 
 # Introduction
@@ -64,58 +65,57 @@ Use version up to `1.0.0`.
 
 ## Getting Started
 
-Lorem markdownum capillos sceleris in perde agricolam novi Priamidenque abundet
-per ulvam Cretaei superis spumis mitibus tu semper et? Theseus exhibuere
-*pudore*, quod dignus turbine conbiberat male, **tamen ad** auras Achilles, non.
-Antris ipse viribus locique sua *cepit* firmo serta, lapis multorum caesosque
-cecidit.
+Create a `LoggingSystem` which defines the categories:
 
-```
-var busSsl = executable_property * 2;
-integrated *= aluSuffix(clobEmulation(14, alpha_printer - 4, ebook_ivr), 1 *
-        association_primary_ipv);
-app_threading_default(font);
-driver(2 + restore_processor_power + url, username_domain(
-        pebibyteSpriteImpact));
-```
-
-Letalibus nutritaque **pateat et quibus** bubo iaculantem cupit
-[inguine](http://www.inde-multa.io/), facit. Quis per sub sorori, parte *nondum*
-et est et et quas amplexa iuvencos gratissime custodia audiri. Centum erat quo
-robusta viridis satis; et plumas custos, siccis qui: proximus, scopulis dixit.
-Fratres planxere patentes *a potens caducas*. Amphimedon capiat.
-
-1. Tota ave surgunt radiante
-2. Et fetibus abeunt inpleratque ignes
-3. In latus crimen si animi ne inque
-
-## Advanced Usage
-
-Quidem **neque equos** inplerunt est ira arserunt et illa;
-notavit omnibus noctis mitissima inque, ille et! Ventis mora mater lacertos
-recusat munere. Minos sparsit dedere Amphiona erigitur teneo medias deum;
-valens. Post nostro sumus; de et ipse.
-
-```
-if (raidBoot(rightCodec, 5 + payload_flaming_digital, dongleBaseConstant)) {
-    search_mnemonic_engine = surface.usb_thyristor(process_box_vaporware);
-    plagiarismBps = fddi_lcd_compact;
-    https_base += file_in;
-} else {
-    characterUrl.maximizeUsb -= 63210 + and;
-    vdsl += extranet;
-    powerpointBugAsp(page_illegal + cmyk_cmos);
+```swift
+public enum BushelLogging: LoggingSystem {
+  public enum Category: String, CaseIterable {
+    case library
+    case data
+    case view
+    case machine
+    case application
+    case observation
+    case market
+  }
 }
-var office_design_double = atm;
-cardBinaryFriend -= pptp_twitter;
-table_node_speed = capacity_undo;
-rtfServicesXslt(copyright_link / jumper);
 ```
 
-Metu orbem populi tergum; nare fertur primos; nec quae supera populisque peperi
-choreas salignis aeternum ac cavis illic? Tangit bracchia, attollere magnum!
-Commune auras. Saturnus *ait stabat*, ultro quae, pete innumeras quondam donec
-monstris quam.
+The `Category` enum inside must have a `RawType` of `String`.
+Additionally if you wish to take advantage of automatically created `Logger` object, 
+then you should also have to implment `CaseIterable`.
+
+Now to use your new `LoggingSystem` in any type:
+
+1. Implement `Feline` and `Pine` 
+2. Define your `LoggingSystem`
+3. Define the `LoggingSystem.Category`
+
+```swift
+internal struct VirtualMachine: Loggable {
+  internal typealias LoggingSystemType = BushelLogging
+
+  internal static let loggingCategory: BushelLogging.Category = .machine
+  ...
+}
+```
+
+## Using the `Loggable` type
+
+You can simplify by using the `Loggable` protocol to create protocol to use throughout your codebase:
+
+```swift
+public protocol BushelLoggable: FelinePine.Loggable where Self.LoggingSystemType == BushelLogging {}
+```
+
+Now you can simply use the _new_ `Loggable` type:
+
+```swift
+internal struct VirtualMachine: BushelLoggable {
+  internal static let loggingCategory: BushelLogging.Category = .machine
+  ...
+}
+```
 
 ## Further Documentation
 
