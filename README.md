@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="FelinePine" title="FelinePine" src="logo.svg" height="125">
+    <img alt="FelinePine" title="FelinePine" src="Sources/FelinePine/Documentation.docc/Resources/FelinePine.svg" height="250">
 </p>
 <h1 align="center">FelinePine</h1>
 
