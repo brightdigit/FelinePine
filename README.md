@@ -96,6 +96,11 @@ internal struct VirtualMachine: Loggable {
   internal typealias LoggingSystemType = BushelLogging
 
   internal static let loggingCategory: BushelLogging.Category = .machine
+  
+  func run () {
+    Self.logger.debug("Starting Run")
+    ...
+  }
   ...
 }
 ```
@@ -113,7 +118,7 @@ Now you can simply use the _new_ `Loggable` type:
 ```swift
 internal struct VirtualMachine: BushelLoggable {
   internal static let loggingCategory: BushelLogging.Category = .machine
-  ...
+  
   func run () {
     Self.logger.debug("Starting Run")
     ...
