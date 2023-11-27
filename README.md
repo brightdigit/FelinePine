@@ -114,6 +114,10 @@ Now you can simply use the _new_ `Loggable` type:
 internal struct VirtualMachine: BushelLoggable {
   internal static let loggingCategory: BushelLogging.Category = .machine
   ...
+  func run () {
+    Self.logger.debug("Starting Run")
+    ...
+  }
 }
 ```
 
