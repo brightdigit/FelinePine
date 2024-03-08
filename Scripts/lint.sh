@@ -35,7 +35,7 @@ pushd $PACKAGE_DIR
 
 if [ -z "$CI" ]; then
 	$MINT_RUN swiftformat .
-	$MINT_RUN swiftlint autocorrect
+	$MINT_RUN swiftlint --autocorrect
 fi
 
 $MINT_RUN periphery scan --disable-update-check
