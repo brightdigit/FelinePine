@@ -83,13 +83,13 @@ jobs:
             watchName: "Apple Watch Series 8 (41mm)"
             iPhoneName: "iPhone 15"
           - runs-on: macos-14
-            xcode: /Applications/Xcode_15.1.app"
+            xcode: "/Applications/Xcode_15.1.app"
             iOSVersion: "17.2"
             watchOSVersion: "10.2"
             watchName: "Apple Watch Series 9 (41mm)"
             iPhoneName: "iPhone 15 Plus"
           - runs-on: macos-14
-            xcode: /Applications/Xcode_15.2.app"
+            xcode: "/Applications/Xcode_15.2.app"
             iOSVersion: "17.2"
             watchOSVersion: "10.2"
             watchName: "Apple Watch Series 9 (45mm)"
