@@ -1,5 +1,5 @@
 //
-//  Logger.swift
+//  NSLocking.swift
 //  FelinePine
 //
 //  Created by Leo Dion.
@@ -27,15 +27,16 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-// swiftlint:disable file_types_order
+import Foundation
 
-#if canImport(os)
-  import os.log
-  /// Standard os.log Logger
-  public typealias Logger = os.Logger
-#else
-  import Logging
-  /// swift-log Logging.Logger
-  public typealias Logger = Logging.Logger
+#if !canImport(os)
+  extension NSLocking {
+    internal func withLock<R>(_ body: () throws -> R) rethrows -> R {
+      lock()
+      defer {
+        self.unlock()
+      }
+      return try body()
+    }
+  }
 #endif
-// swiftlint:enable file_types_order
