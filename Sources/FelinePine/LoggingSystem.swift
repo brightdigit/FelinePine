@@ -5,23 +5,36 @@ import Foundation
   import Logging
 #endif
 
-private actor LoggingSystemRepository {
-  static var items = [String: Any]()
-  static func loggingSystem<LoggingSystemType: LoggingSystem>(
+private class  LoggingSystemRepository : @unchecked Sendable {
+  private init(items: [String : Any] = [String: Any]()) {
+    self.items = items
+  }
+  
+  
+  fileprivate static let shared = LoggingSystemRepository()
+  private let lock = NSRecursiveLock()
+  private var items = [String: Any]()
+  fileprivate func loggingSystem<LoggingSystemType: LoggingSystem>(
     for system: LoggingSystemType.Type,
     using value: @autoclosure () -> [LoggingSystemType.Category: Logger]
   ) -> [LoggingSystemType.Category: Logger] {
-    let anyItem = items[system.identifier]
+    
+    let anyItem = lock.withLock {
+      items[system.identifier]
+    }
     if let item = anyItem as? [LoggingSystemType.Category: Logger] {
       return item
     } else {
       assert(anyItem == nil)
-      let value = value()
-      items[system.identifier] = value
-      return value
+      return lock.withLock {
+        let value = value()
+        items[system.identifier] = value
+        return value
+      }
     }
   }
 }
+
 
 /// Defines the logging categories for your application.
 public protocol LoggingSystem {
@@ -59,7 +72,7 @@ extension LoggingSystem {
 
 extension LoggingSystem where Category: CaseIterable {
   private static var loggers: [Category: Logger] {
-    LoggingSystemRepository.loggingSystem(for: Self.self, using: defaultLoggers())
+    LoggingSystemRepository.shared.loggingSystem(for: Self.self, using: defaultLoggers())
   }
 
   /// If ``Category`` implements `CaseIterable`, ``LoggingSystem`` can automatically
