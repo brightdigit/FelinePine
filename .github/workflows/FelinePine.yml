@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-20.04, ubuntu-22.04]
-        swift-version: [5.8.1, 5.9]
+        swift-version: [5.8.1, 5.9, 5.10]
     steps:
       - uses: actions/checkout@v3
       - name: Cache swift package modules
@@ -70,17 +70,30 @@ jobs:
     strategy:
       matrix:
         include:
-          - xcode: "/Applications/Xcode_14.3.1.app"
+          - runs-on: macos-13
+            xcode: "/Applications/Xcode_14.3.1.app"
             iOSVersion: "16.4"
             watchOSVersion: "9.4"
-            watchName: "Apple Watch Ultra (49mm)"
-            iPhoneName: "iPhone 14 Pro Max"
+            watchName: "Apple Watch Series 5 (40mm)"
+            iPhoneName: "iPhone 14"
           - runs-on: macos-13
             xcode: "/Applications/Xcode_15.0.1.app"
             iOSVersion: "17.0.1"
             watchOSVersion: "10.0"
-            watchName: "Apple Watch Ultra (49mm)"
-            iPhoneName: "iPhone 15 Pro Max"
+            watchName: "Apple Watch Series 8 (41mm)"
+            iPhoneName: "iPhone 15"
+          - runs-on: macos-14
+            xcode: /Applications/Xcode_15.1.app"
+            iOSVersion: "17.2"
+            watchOSVersion: "10.2"
+            watchName: "Apple Watch Series 9 (41mm)"
+            iPhoneName: "iPhone 15 Plus"
+          - runs-on: macos-14
+            xcode: /Applications/Xcode_15.2.app"
+            iOSVersion: "17.2"
+            watchOSVersion: "10.2"
+            watchName: "Apple Watch Series 9 (45mm)"
+            iPhoneName: "iPhone 15 Pro"
     steps:
       - uses: actions/checkout@v3
       - name: Cache swift package modules
