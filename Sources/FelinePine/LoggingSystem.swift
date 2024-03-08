@@ -5,7 +5,7 @@ import Foundation
   import Logging
 #endif
 
-private enum LoggingSystemRepository {
+private actor LoggingSystemRepository {
   static var items = [String: Any]()
   static func loggingSystem<LoggingSystemType: LoggingSystem>(
     for system: LoggingSystemType.Type,
