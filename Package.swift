@@ -24,6 +24,16 @@ let package = Package(
           package: "swift-log",
           condition: .when(platforms: [.linux, .android, .wasi, .windows])
         )
+      ],
+      swiftSettings: [
+        SwiftSetting.enableUpcomingFeature("BareSlashRegexLiterals"),
+        SwiftSetting.enableUpcomingFeature("ConciseMagicFile"),
+        SwiftSetting.enableUpcomingFeature("ExistentialAny"),
+        SwiftSetting.enableUpcomingFeature("ForwardTrailingClosures"),
+        SwiftSetting.enableUpcomingFeature("ImplicitOpenExistentials"),
+        SwiftSetting.enableUpcomingFeature("StrictConcurrency"),
+        SwiftSetting.enableUpcomingFeature("DisableOutwardActorInference"),
+        SwiftSetting.enableExperimentalFeature("StrictConcurrency")
       ]
     ),
     .testTarget(
@@ -32,3 +42,4 @@ let package = Package(
     )
   ]
 )
+// swiftlint:enable explicit_acl explicit_top_level_acl
