@@ -40,7 +40,6 @@ public protocol LoggingSystem: Sendable {
   associatedtype Category: Hashable & RawRepresentable
     where Category.RawValue == String
 
-  // swiftlint:disable:next missing_docs
   static var identifier: String { get }
 
   /// Subsystem to use for each ``Logger``.
