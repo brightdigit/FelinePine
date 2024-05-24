@@ -30,6 +30,7 @@
 import Foundation
 
 #if !canImport(os)
+  @available(*, deprecated)
   extension NSLocking {
     internal func withLock<R>(_ body: () throws -> R) rethrows -> R {
       lock()
