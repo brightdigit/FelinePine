@@ -29,9 +29,9 @@
 
 import Foundation
 #if canImport(os)
-  import os
+  public import os
 #elseif canImport(Logging)
-  import Logging
+  public import Logging
 #endif
 
 #if canImport(os) || canImport(Logging)

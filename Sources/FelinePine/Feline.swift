@@ -30,9 +30,9 @@
 import Foundation
 
 #if canImport(os)
-  import os
+  public import os
 #elseif canImport(Logging)
-  import Logging
+  public import Logging
 #endif
 
 /// Defines the ``LoggingSystem`` to use as well as the category.

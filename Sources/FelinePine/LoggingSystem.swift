@@ -29,13 +29,13 @@
 
 import Foundation
 #if canImport(os)
-  import os
+  public import os
 #elseif canImport(Logging)
-  import Logging
+  public import Logging
 #endif
 
 /// Defines the logging categories for your application.
-public protocol LoggingSystem {
+public protocol LoggingSystem: Sendable {
   /// Logging categories available to types in the application
   associatedtype Category: Hashable & RawRepresentable
     where Category.RawValue == String
