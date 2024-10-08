@@ -21,8 +21,7 @@ let package = Package(
       dependencies: [
         .product(
           name: "Logging",
-          package: "swift-log",
-          condition: .when(platforms: [.linux, .android, .wasi, .windows])
+          package: "swift-log"
         )
       ],
       swiftSettings: [
