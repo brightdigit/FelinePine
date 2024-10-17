@@ -12,19 +12,9 @@ let package = Package(
       targets: ["FelinePine"]
     )
   ],
-  dependencies: [
-    .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0")
-  ],
   targets: [
     .target(
       name: "FelinePine",
-      dependencies: [
-        .product(
-          name: "Logging",
-          package: "swift-log",
-          condition: .when(platforms: [.linux, .android, .wasi, .windows])
-        )
-      ],
       swiftSettings: [
         SwiftSetting.enableUpcomingFeature("BareSlashRegexLiterals"),
         SwiftSetting.enableUpcomingFeature("ConciseMagicFile"),
