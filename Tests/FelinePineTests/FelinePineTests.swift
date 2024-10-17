@@ -31,8 +31,12 @@
 import XCTest
 
 internal final class FelinePineTests: XCTestCase {
-  internal func testLogger() {
-    _ = MockType.logger
-    XCTAssert(true)
+  internal func testLogger() throws {
+    #if canImport(os) || canImport(Logging)
+      _ = MockType.logger
+      XCTAssert(true)
+    #else
+      throw XCTSkip("No Logger available.")
+    #endif
   }
 }

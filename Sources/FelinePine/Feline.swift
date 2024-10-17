@@ -28,9 +28,10 @@
 //
 
 import Foundation
+
 #if canImport(os)
   import os
-#else
+#elseif canImport(Logging)
   import Logging
 #endif
 
@@ -45,9 +46,11 @@ public protocol Feline {
   }
 }
 
-extension Feline where Self: Pine {
-  /// Use the ``loggingCategory`` to define the shared logger for type.
-  public static var logger: Logger {
-    LoggingSystemType.logger(forCategory: loggingCategory)
+#if canImport(os) || canImport(Logging)
+  extension Feline where Self: Pine {
+    /// Use the ``loggingCategory`` to define the shared logger for type.
+    public static var logger: Logger {
+      LoggingSystemType.logger(forCategory: loggingCategory)
+    }
   }
-}
+#endif

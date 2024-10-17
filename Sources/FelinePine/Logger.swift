@@ -33,7 +33,7 @@
   import os.log
   /// Standard os.log Logger
   public typealias Logger = os.Logger
-#else
+#elseif canImport(Logging)
   import Logging
   /// swift-log Logging.Logger
   public typealias Logger = Logging.Logger

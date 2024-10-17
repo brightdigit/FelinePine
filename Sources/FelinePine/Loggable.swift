@@ -29,6 +29,13 @@
 
 import Foundation
 
+#if canImport(os) || canImport(Logging)
+  public typealias FelinePineProtocol = Feline & Pine
+#else
+  public typealias FelinePineProtocol = Feline
+#endif
+
 /// Loggable type for a ``LoggingSystem``.
-public protocol Loggable<LoggingSystemType>: Feline, Pine
+public protocol Loggable<LoggingSystemType>: FelinePineProtocol
+
   where LoggingSystemType: LoggingSystem {}
