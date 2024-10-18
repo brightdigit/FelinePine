@@ -94,7 +94,7 @@ jobs:
             watchOSVersion: "10.2"
             watchName: "Apple Watch Series 9 (45mm)"
             iPhoneName: "iPhone 15 Pro"
-          - runs-on: macos-14
+          - runs-on: macos-15
             xcode: "/Applications/Xcode_16.1.app"
             iOSVersion: "18.0"
             watchOSVersion: "11.0"
