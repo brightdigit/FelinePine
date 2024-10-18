@@ -37,5 +37,4 @@ import Foundation
 
 /// Loggable type for a ``LoggingSystem``.
 public protocol Loggable<LoggingSystemType>: FelinePineProtocol
-
   where LoggingSystemType: LoggingSystem {}

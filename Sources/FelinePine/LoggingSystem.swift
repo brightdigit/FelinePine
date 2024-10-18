@@ -28,19 +28,27 @@
 //
 
 import Foundation
-#if canImport(os)
-  import os
-#elseif canImport(Logging)
-  import Logging
+
+#if swift(<6.0)
+  #if canImport(os)
+    import os
+  #elseif canImport(Logging)
+    import Logging
+  #endif
+#else
+  #if canImport(os)
+    public import os
+  #elseif canImport(Logging)
+    public import Logging
+  #endif
 #endif
 
 /// Defines the logging categories for your application.
-public protocol LoggingSystem {
+public protocol LoggingSystem: Sendable {
   /// Logging categories available to types in the application
   associatedtype Category: Hashable & RawRepresentable
     where Category.RawValue == String
 
-  // swiftlint:disable:next missing_docs
   static var identifier: String { get }
 
   /// Subsystem to use for each ``Logger``.
