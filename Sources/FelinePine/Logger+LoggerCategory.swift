@@ -27,23 +27,32 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
-#if canImport(os)
-  import os
+#if swift(<6.0)
+  #if canImport(os)
+    import os
+  #elseif canImport(Logging)
+    import Logging
+  #endif
 #else
-  import Logging
+  #if canImport(os)
+    public import os
+  #elseif canImport(Logging)
+    public import Logging
+  #endif
 #endif
 
-extension Logger {
-  internal init<Category: RawRepresentable>(
-    subsystem: String,
-    category: Category
-  ) where Category.RawValue == String {
-    #if canImport(os)
-      self.init(subsystem: subsystem, category: category.rawValue)
-    #else
-      self.init(label: subsystem)
-      self[metadataKey: "category"] = "\(category)"
-    #endif
+#if canImport(os) || canImport(Logging)
+  extension Logger {
+    internal init<Category: RawRepresentable>(
+      subsystem: String,
+      category: Category
+    ) where Category.RawValue == String {
+      #if canImport(os)
+        self.init(subsystem: subsystem, category: category.rawValue)
+      #else
+        self.init(label: subsystem)
+        self[metadataKey: "category"] = "\(category)"
+      #endif
+    }
   }
-}
+#endif

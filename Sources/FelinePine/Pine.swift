@@ -28,18 +28,29 @@
 //
 
 import Foundation
-#if canImport(os)
-  import os
+
+#if swift(<6.0)
+  #if canImport(os)
+    import os
+  #elseif canImport(Logging)
+    import Logging
+  #endif
 #else
-  import Logging
+  #if canImport(os)
+    public import os
+  #elseif canImport(Logging)
+    public import Logging
+  #endif
 #endif
 
-/// Defines a shared logger for the type.
-///
-/// Provides a shared ``Logger`` to use in this type.
-public protocol Pine {
-  /// Shared logger for Type.
-  static var logger: Logger {
-    get
+#if canImport(os) || canImport(Logging)
+  /// Defines a shared logger for the type.
+  ///
+  /// Provides a shared ``Logger`` to use in this type.
+  public protocol Pine {
+    /// Shared logger for Type.
+    static var logger: Logger {
+      get
+    }
   }
-}
+#endif
