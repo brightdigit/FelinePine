@@ -27,11 +27,11 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+internal import Foundation
 #if canImport(os)
-  import os
+  internal import os
 #elseif canImport(Logging)
-  import Logging
+  internal import Logging
 #endif
 
 #if canImport(os) || canImport(Logging)
