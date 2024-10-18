@@ -65,7 +65,7 @@ jobs:
     name: Build on macOS
     env:
       PACKAGE_NAME: FelinePine
-    runs-on: macos-13
+    runs-on: ${{ matrix.runs-on }}
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
@@ -94,8 +94,8 @@ jobs:
             watchOSVersion: "10.2"
             watchName: "Apple Watch Series 9 (45mm)"
             iPhoneName: "iPhone 15 Pro"
-          - runs-on: macos-14
-            xcode: "/Applications/Xcode_16.app"            
+          - runs-on: macos-15
+            xcode: "/Applications/Xcode_16.1.app"            
             iOSVersion: "18.0"
             watchOSVersion: "11.0"
             watchName: "Apple Watch Series 10 (42mm)"
