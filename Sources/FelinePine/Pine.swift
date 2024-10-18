@@ -28,10 +28,19 @@
 //
 
 import Foundation
-#if canImport(os)
-  public import os
-#elseif canImport(Logging)
-  public import Logging
+
+#if swift(<6.0)
+  #if canImport(os)
+    import os
+  #elseif canImport(Logging)
+    import Logging
+  #endif
+#else
+  #if canImport(os)
+    public import os
+  #elseif canImport(Logging)
+    public import Logging
+  #endif
 #endif
 
 #if canImport(os) || canImport(Logging)

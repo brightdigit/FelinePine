@@ -28,15 +28,24 @@
 //
 
 // swiftlint:disable file_types_order
+#if swift(<6.0)
+  #if canImport(os)
+    import os
+  #elseif canImport(Logging)
+    import Logging
+  #endif
+#else
+  #if canImport(os)
+    public import os
+  #elseif canImport(Logging)
+    public import Logging
+  #endif
+#endif
 
 #if canImport(os)
-  public import os.log
-
-  /// Standard os.log Logger
+  /// os.Logger
   public typealias Logger = os.Logger
 #elseif canImport(Logging)
-  public import Logging
-
   /// swift-log Logging.Logger
   public typealias Logger = Logging.Logger
 #endif
