@@ -39,7 +39,7 @@
   #endif
 #endif
 
-#if canImport(os) 
+#if canImport(os)
   extension Logger {
     internal init<Category: RawRepresentable>(
       subsystem: String,
