@@ -32,14 +32,12 @@ import Foundation
 #if swift(<6.0)
   #if canImport(os)
     import os
-  #elseif canImport(Logging)
-    import Logging
+
   #endif
 #else
   #if canImport(os)
     public import os
-  #elseif canImport(Logging)
-    public import Logging
+
   #endif
 #endif
 
@@ -54,7 +52,7 @@ private class LoggingSystemRepository: @unchecked Sendable {
     self.items = items
   }
 
-  #if canImport(os) || canImport(Logging)
+  #if canImport(os)
     fileprivate func loggingSystem<LoggingSystemType: LoggingSystem>(
       for system: LoggingSystemType.Type,
       using value: @autoclosure () -> [LoggingSystemType.Category: Logger]
@@ -94,7 +92,7 @@ extension LoggingSystem {
   }
 }
 
-#if canImport(os) || canImport(Logging)
+#if canImport(os)
   extension LoggingSystem where Category: CaseIterable {
     private static var loggers: [Category: Logger] {
       LoggingSystemRepository.shared.loggingSystem(

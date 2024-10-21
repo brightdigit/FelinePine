@@ -32,7 +32,7 @@ import XCTest
 
 internal final class FelinePineTests: XCTestCase {
   internal func testLogger() throws {
-    #if canImport(os) || canImport(Logging)
+    #if canImport(os)
       _ = MockType.logger
       XCTAssert(true)
     #else

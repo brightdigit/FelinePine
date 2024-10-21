@@ -29,7 +29,7 @@
 
 import Foundation
 
-#if canImport(os) || canImport(Logging)
+#if canImport(os)
   public typealias FelinePineProtocol = Feline & Pine
 #else
   public typealias FelinePineProtocol = Feline

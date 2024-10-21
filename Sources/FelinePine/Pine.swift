@@ -32,18 +32,16 @@ import Foundation
 #if swift(<6.0)
   #if canImport(os)
     import os
-  #elseif canImport(Logging)
-    import Logging
+
   #endif
 #else
   #if canImport(os)
     public import os
-  #elseif canImport(Logging)
-    public import Logging
+
   #endif
 #endif
 
-#if canImport(os) || canImport(Logging)
+#if canImport(os)
   /// Defines a shared logger for the type.
   ///
   /// Provides a shared ``Logger`` to use in this type.
