@@ -45,7 +45,7 @@ internal final class LoggingSystemTests: XCTestCase {
   }
 
   internal func testLogger() throws {
-    #if canImport(os) || canImport(Logging)
+    #if canImport(os)
       for category in MockSystem.Category.allCases {
         _ = MockSystem.logger(forCategory: category)
       }

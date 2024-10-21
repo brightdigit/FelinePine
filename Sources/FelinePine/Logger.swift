@@ -31,22 +31,17 @@
 #if swift(<6.0)
   #if canImport(os)
     import os
-  #elseif canImport(Logging)
-    import Logging
+
   #endif
 #else
   #if canImport(os)
     public import os
-  #elseif canImport(Logging)
-    public import Logging
+
   #endif
 #endif
 
 #if canImport(os)
   /// os.Logger
   public typealias Logger = os.Logger
-#elseif canImport(Logging)
-  /// swift-log Logging.Logger
-  public typealias Logger = Logging.Logger
 #endif
 // swiftlint:enable file_types_order
