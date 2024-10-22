@@ -35,7 +35,7 @@
       subsystem: String,
       category: Category
     ) where Category.RawValue == String {
-        self.init(subsystem: subsystem, category: category.rawValue)
+      self.init(subsystem: subsystem, category: category.rawValue)
     }
   }
 #endif

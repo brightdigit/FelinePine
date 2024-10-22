@@ -27,7 +27,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
+// swiftlint:disable missing_docs
 #if canImport(os)
   public import os
   public typealias Logger = os.Logger
 #endif
+// swiftlint:enable missing_docs
