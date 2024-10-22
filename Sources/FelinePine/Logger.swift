@@ -56,13 +56,6 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 #if canImport(os)
-
-  #if swift(<6.0)
-    import os
-  #else
-    public import os
-  #endif
-
-  /// os.Logger
+  public import os
   public typealias Logger = os.Logger
 #endif
