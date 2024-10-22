@@ -33,6 +33,8 @@ import Foundation
 
 public import os
 
+#endif
+
 /// Defines the ``LoggingSystem`` to use as well as the category.
 public protocol Feline {
   /// Defined ``LoggingSystemType`` to use for pulling the correct category.
@@ -44,6 +46,7 @@ public protocol Feline {
   }
 }
 
+#if canImport(os)
   extension Feline where Self: Pine {
     /// Use the ``loggingCategory`` to define the shared logger for type.
     public static var logger: Logger {

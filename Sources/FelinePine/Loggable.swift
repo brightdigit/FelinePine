@@ -36,5 +36,6 @@ import Foundation
 #endif
 
 /// Loggable type for a ``LoggingSystem``.
-public protocol Loggable<LoggingSystemType>: FelinePineProtocol
-  where LoggingSystemType: LoggingSystem {}
+public protocol Loggable<LoggingSystemType>: FelinePineProtocol {
+  associatedtype LoggingSystemType : LoggingSystem
+}
