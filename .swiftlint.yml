@@ -110,5 +110,6 @@ identifier_name:
 excluded:
   - DerivedData
   - .build
+  - Packages
 indentation_width:
   indentation_width: 2
