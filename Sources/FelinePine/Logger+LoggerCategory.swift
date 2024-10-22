@@ -27,19 +27,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if swift(<6.0)
-  #if canImport(os)
-    import os
-
-  #endif
-#else
-  #if canImport(os)
-    public import os
-
-  #endif
-#endif
-
 #if canImport(os)
+  public import os
+
   extension Logger {
     internal init<Category: RawRepresentable>(
       subsystem: String,

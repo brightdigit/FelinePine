@@ -29,17 +29,9 @@
 
 import Foundation
 
-#if swift(<6.0)
-  #if canImport(os)
-    import os
+#if canImport(os)
 
-  #endif
-#else
-  #if canImport(os)
-    public import os
-
-  #endif
-#endif
+public import os
 
 /// Defines the ``LoggingSystem`` to use as well as the category.
 public protocol Feline {
@@ -52,7 +44,6 @@ public protocol Feline {
   }
 }
 
-#if canImport(os)
   extension Feline where Self: Pine {
     /// Use the ``loggingCategory`` to define the shared logger for type.
     public static var logger: Logger {

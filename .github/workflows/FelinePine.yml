@@ -94,6 +94,12 @@ jobs:
             watchOSVersion: "10.2"
             watchName: "Apple Watch Series 9 (45mm)"
             iPhoneName: "iPhone 15 Pro"
+          - runs-on: macos-15
+            xcode: "/Applications/Xcode_16.1.app"
+            iOSVersion: "18.1"
+            watchOSVersion: "11.1"
+            watchName: "Apple Watch Series 10 (46mm)"
+            iPhoneName: "iPhone 16 Pro"
     steps:
       - uses: actions/checkout@v3
       - name: Cache swift package modules

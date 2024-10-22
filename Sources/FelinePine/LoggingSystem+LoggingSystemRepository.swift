@@ -29,16 +29,8 @@
 
 import Foundation
 
-#if swift(<6.0)
-  #if canImport(os)
-    import os
-
-  #endif
-#else
-  #if canImport(os)
-    public import os
-
-  #endif
+#if canImport(os)
+  public import os
 #endif
 
 // swiftlint:disable strict_fileprivate
