@@ -1,4 +1,4 @@
-name: FelinePineLogging
+name: FelinePine
 settings:
   LINT_MODE: ${LINT_MODE}
 packages:

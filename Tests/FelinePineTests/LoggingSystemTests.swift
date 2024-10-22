@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-@testable import FelinePineLogging
+@testable import FelinePine
 import XCTest
 
 internal final class LoggingSystemTests: XCTestCase {
@@ -44,13 +44,9 @@ internal final class LoggingSystemTests: XCTestCase {
     }
   }
 
-  internal func testLogger() throws {
-    #if canImport(os)
-      for category in MockSystem.Category.allCases {
-        _ = MockSystem.logger(forCategory: category)
-      }
-    #else
-      throw XCTSkip("Logger not available.")
-    #endif
+  internal func testLogger() {
+    for category in MockSystem.Category.allCases {
+      _ = MockSystem.logger(forCategory: category)
+    }
   }
 }
