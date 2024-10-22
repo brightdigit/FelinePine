@@ -35,12 +35,7 @@
       subsystem: String,
       category: Category
     ) where Category.RawValue == String {
-      #if canImport(os)
         self.init(subsystem: subsystem, category: category.rawValue)
-      #else
-        self.init(label: subsystem)
-        self[metadataKey: "category"] = "\(category)"
-      #endif
     }
   }
 #endif
