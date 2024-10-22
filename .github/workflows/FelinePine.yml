@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-20.04, ubuntu-22.04]
-        swift-version: [5.8.1, 5.9, "5.10"]
+        swift-version: [5.8.1, 5.9, "5.10", "6.0"]
     steps:
       - uses: actions/checkout@v3
       - name: Cache swift package modules
@@ -65,7 +65,7 @@ jobs:
     name: Build on macOS
     env:
       PACKAGE_NAME: FelinePine
-    runs-on: macos-13
+    runs-on: ${{ matrix.runs-on }}
     if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
       matrix:
