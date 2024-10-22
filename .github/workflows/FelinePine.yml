@@ -70,12 +70,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - runs-on: macos-13
-            xcode: "/Applications/Xcode_14.3.1.app"
-            iOSVersion: "16.4"
-            watchOSVersion: "9.4"
-            watchName: "Apple Watch Series 5 (40mm)"
-            iPhoneName: "iPhone 14"
+          # - runs-on: macos-13
+          #   xcode: "/Applications/Xcode_14.3.1.app"
+          #   iOSVersion: "16.4"
+          #   watchOSVersion: "9.4"
+          #   watchName: "Apple Watch Series 5 (40mm)"
+          #   iPhoneName: "iPhone 14"
           - runs-on: macos-13
             xcode: "/Applications/Xcode_15.0.1.app"
             iOSVersion: "17.0.1"
