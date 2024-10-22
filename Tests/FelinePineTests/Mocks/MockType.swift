@@ -30,7 +30,7 @@
 @testable import FelinePine
 import XCTest
 
-internal struct MockType: Feline {
+internal struct MockType: FelinePineProtocol {
   internal typealias LoggingSystemType = MockSystem
 
   internal static let loggingCategory: MockSystem.Category = .alpha
