@@ -23,7 +23,8 @@ let package = Package(
         SwiftSetting.enableUpcomingFeature("ImplicitOpenExistentials"),
         SwiftSetting.enableUpcomingFeature("StrictConcurrency"),
         SwiftSetting.enableUpcomingFeature("DisableOutwardActorInference"),
-        SwiftSetting.enableExperimentalFeature("StrictConcurrency")
+        SwiftSetting.enableExperimentalFeature("StrictConcurrency"),
+        SwiftSetting.enableExperimentalFeature("AccessLevelOnImport")
       ]
     ),
     .testTarget(
