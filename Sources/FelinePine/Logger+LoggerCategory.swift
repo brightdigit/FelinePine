@@ -27,32 +27,15 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if swift(<6.0)
-  #if canImport(os)
-    import os
-  #elseif canImport(Logging)
-    import Logging
-  #endif
-#else
-  #if canImport(os)
-    public import os
-  #elseif canImport(Logging)
-    public import Logging
-  #endif
-#endif
+#if canImport(os)
+  public import os
 
-#if canImport(os) || canImport(Logging)
   extension Logger {
     internal init<Category: RawRepresentable>(
       subsystem: String,
       category: Category
     ) where Category.RawValue == String {
-      #if canImport(os)
-        self.init(subsystem: subsystem, category: category.rawValue)
-      #else
-        self.init(label: subsystem)
-        self[metadataKey: "category"] = "\(category)"
-      #endif
+      self.init(subsystem: subsystem, category: category.rawValue)
     }
   }
 #endif
